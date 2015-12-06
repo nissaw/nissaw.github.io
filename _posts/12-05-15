@@ -1,0 +1,29 @@
+Inheritance in Javascript
+Objects have methods. specific functions they can call that are relevant to them. These functions may modify other properties on the object or create side effects or do things on the global scope. 
+If you are creating an object you can directly give it as many methods as you want. this is functional instantiation
+<insert code here>
+But what about when you're making another object and you want to use the same functions while not typing them all out again, because maybe you're making anther 200 objects and that would take a ton of time/ clutter your code etc. You can take all the methods that all your objects want to share and put them in ANOTHER object. then use javascprits extend function to plaster them into your indivdual ojects that want to have access to them. you can suck them in one-by one 
+<dalmation.bark = dogmethods.bark>
+<poodle.bark = dogmethods.bark>
+or grab them all at once using extend
+<insert better code here>
+<dogmethods = {
+  this.bark = alert("ruff"),
+  this.hungry = alert('feed me')
+    }>
+  <dalmation ={
+    color: spotted, 
+  },
+  dalmation.extend(dogmethods) //
+  dalmation = {
+  color: spotted, 
+  this.bark
+  this.hungry
+  }.
+  
+  But extend only copies over the methods at one point in time. what if you suddenly wanted all dogs to have access to a new method? you would have to re-run your extend function on every single dog AGAIN! yuck. 
+  so how can we keep all dogs updated with the MOST CURRENT FUNCTIONS? we need to create a delegation relationship.
+  when an object delegates to another object for methods it does not have itself we say it is 'delegating its failed lookups up the prototype chain' but how does an object know where to look?? you have to tell it where. this can only be done when you create an object. You will tell it where to look. 
+  this is possible with prototypal and pseudoclassical instantiation. 
+  these two methods create the exact same final result with some syntactic sugar on the pseudoclassical side. 
+  

@@ -1,0 +1,32 @@
+Native Sort
+Array.prototype.sort()
+It doesn't do what you expect. 
+
+```javascript
+[1, false, 10, "b", 3, "33", ":"].sort()
+[1, 10, 3, "33", ":", "b", false]
+
+[false, 1, "b", "33", "cat", 50].sort();
+[ 1, "33", 50, "b", "cat", false ]
+```
+so, that's interesting. 
+and it can get even more interesting when you run the same array with native sort in different browsers. 
+so what is going on here and how do we make native sort predicatable, and therefore useful?
+
+what's going on is that every javascript engine was left to implement sort however it saw fit, so Chrome, Firefox and IE all decided to prioriztize and order numbers, booleans and unicode letters and characters differently.
+
+we make sort useful by passing in a compare function that as a parameter. 
+The compare function passed in must take two parameters(a, b) that are populated as sort moves through the array. 
+The first value of 'a' will equal array[0] and the first value of 'b' will be array[1]
+Array.prototype.sort tells us that if given this compare callback function it will determine sort order based on the result of that function.
+If the callback returns a value less than 0 'a' will be sorted to a lower index than 'b' : i.e. a will come before b
+If the callback returns a value greater than 0 'b' will be sorted to a lower index that 'a'
+If the callback returns 0 order is preserved
+
+So lets try this
+```
+
+array.sort(function(a, b){ 
+return (a-b)
+}
+```
